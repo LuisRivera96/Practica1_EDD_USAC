@@ -88,12 +88,6 @@ class CircularList:
 
 
 
-prueba = CircularList()
-prueba.add("lui")
-prueba.add("asd")
-prueba.add("sdas")
-prueba.add("12")
-prueba.printList()
 
 
 

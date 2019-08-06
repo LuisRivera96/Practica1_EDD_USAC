@@ -1,4 +1,4 @@
-
+import curses
 class NodeStack:
      def __init__(self,x,y,next):
          self.x = x
