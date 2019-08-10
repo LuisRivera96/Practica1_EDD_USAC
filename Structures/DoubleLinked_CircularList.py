@@ -1,4 +1,5 @@
-
+import os
+import subprocess
 class User:
 
     def __init__(self,name,points):
@@ -33,33 +34,7 @@ class CircularList:
             self.end = nodp
             print('User added')
 
-    def graphic(self):
-        dot = ""
-        aux = self.head.next
-        grap = open("grafic.dot","w")
-        grap.write("digraph USERS\n{\n")
-        grap.write("compound=true;\n")
-        grap.write("node [shape = \"Mrecord\"];\n")
-        grap.write("rankdir=\"LR\";\n")
-        grap.write("color=green;\n")
-        while aux.next is not self.head:
-            grap.write("\"")
-            grap.write(str(aux.user.name))
-            grap.write("\"")
-
-            grap.write("->")
-            aux = aux.next
-        grap.write("\"")
-        grap.write(str(aux.user.name))
-        grap.write("\"")
-        grap.write("->")
-        aux = aux.next
-        grap.write("\"")
-        grap.write(str(aux.user.name))
-        grap.write("\"")
-        grap.write("}\n")
-        grap.close()
-
+    
     def printList(self):
         if self.head is None:
             print("List Empty")
@@ -83,6 +58,35 @@ class CircularList:
             print('<-',end='')
             temp = temp.previous
             print(temp.user.name)
+
+
+    def graphiz(self):
+        if self.head is None:
+            print("List Empty")
+        else:
+            f = open('CircularList.dot','w')
+            f.write('digraph firsGraph{\n')
+            f.write('node [shape=record];\n')
+            f.write('rankdir=LR;\n')        
+            temp = self.head
+            count = 0
+            while temp.next is not self.head:
+                f.write('node{} [label=\"{}\"];\n'.format(count,temp.user.name))
+                count+=1    
+                f.write('node{} -> node{};\n'.format(count-1,count))
+                f.write('node{} -> node{};\n'.format(count,count-1))        
+                temp = temp.next
+        f.write('node{} [label=\"{}\"];\n'.format(count,temp.user.name))
+        f.write('node{} -> node{};\n'.format(0,count))
+        f.write('node{} -> node{};\n'.format(count,0))      
+        f.write('}')
+        f.close()
+        os.system('dot CircularList.dot -Tpng -o CircularList.png')
+        os.system('CircularList.png')
+        #subproces no me corrio en windows Descomentar
+        #subprocess.check_call(['open','CircularList.png']) 
+        
+           
 
 
 

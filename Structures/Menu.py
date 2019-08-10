@@ -1,6 +1,8 @@
 import curses
 import time
 import sys
+import os
+import subprocess
 from DoubleLinked_CircularList import*
 #Structures
 listaC = CircularList()
@@ -89,7 +91,9 @@ def menuRe(stdscr):
                         current_row_idx += 1
                 elif key == curses.KEY_ENTER or key in [10,13]:
                         #stdscr.addstr(0,0,"You pressed enter {}".format(menuR[current_row_idx]))
-                        if current_row_idx == 4:
+                        if current_row_idx == 3:
+                                listaC.graphiz()
+                        elif current_row_idx == 4:
                                 menup(stdscr)
                         #stdscr.refresh()
                         #stdscr.getch()
@@ -104,7 +108,7 @@ def bulkL(stdscr):
        for line in users.readlines():
                div = ","
                cadena = line.split(div)
-               userN = cadena[0]
+               userN = cadena[0].rstrip('\n')
                if "\"Usuario\"" in userN:
                        print('')
                else:
@@ -118,7 +122,7 @@ def listUsers(stdscr):
         #Tusr = "<---------------------------"+ActUsr.user.name+"----------------------------->"
         user_Text = "User: {}".format(ActUsr.user.name)
         stdscr.addstr(0, w//2 - len(ActUsr.user.name)//2, ActUsr.user.name)
-        current_row_idx = 0
+        current_row_idx = 1
         while 1:
                 key = stdscr.getch()
                 stdscr.clear()

@@ -1,4 +1,5 @@
-import curses
+import os
+import subprocess
 class NodeStack:
      def __init__(self,x,y,next):
          self.x = x

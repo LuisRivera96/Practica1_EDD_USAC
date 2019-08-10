@@ -1,4 +1,5 @@
-
+import os
+import subprocess
 class NodeQ:
      def __init__(self,user,points,next):
          self.user = user
@@ -45,13 +46,4 @@ class Queue:
 
 
 
-prueba = Queue()
-prueba.enqueue("asda",0)
-prueba.enqueue("hola",1)
-prueba.enqueue("co",3)
-prueba.enqueue("la",4)
-prueba.print()
-prueba.dequeue()
-prueba.print()
-prueba.dequeue()
-prueba.print()
+
