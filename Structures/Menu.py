@@ -8,11 +8,13 @@ import random
 from DoubleLinked_CircularList import*
 from Queue import*
 from Stack import*
+from DoubleLinkedList import*
 #from Game import*
 #Structures
 listaC = CircularList()
 col = Queue()
 stk = Stack()
+dbl = DoubleList()
 #
 #var user,points
 
@@ -111,7 +113,9 @@ def menuRe(stdscr):
                         current_row_idx += 1
                 elif key == curses.KEY_ENTER or key in [10,13]:
                         #stdscr.addstr(0,0,"You pressed enter {}".format(menuR[current_row_idx]))
-                        if current_row_idx == 1:
+                        if current_row_idx == 0:
+                                dbl.graphiz()
+                        elif current_row_idx == 1:
                                 stk.graphiz()
                         elif current_row_idx == 2:
                                 col.graphiz()
@@ -286,6 +290,10 @@ def Game(stdscr):
                 col.enqueue(user,score)
                 score = 0
                 stdscr.getch()
+                dbl.head = None
+                dbl.end = None
+                for x in range(0,len(snake)):
+                    dbl.add(snake[x][0],snake[x][1])
                 break  
 
             if score >= 15:
@@ -303,7 +311,7 @@ def Game(stdscr):
                 #bocadillo good
                 food = food_generation(snake,box)
                 stdscr.addstr(food[0],food[1],'+')
-        
+
         elif snake[0] == food and type >20:
             if score >= 15:
                 stdscr.timeout(75)
@@ -338,6 +346,10 @@ def Game(stdscr):
             #add scoreboard Report
             col.enqueue(user,score)
             score = 0
+            dbl.head = None
+            dbl.end = None
+            for x in range(0,len(snake)):
+                    dbl.add(snake[x][0],snake[x][1])
             break
         
     

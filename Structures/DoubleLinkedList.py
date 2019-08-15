@@ -70,7 +70,7 @@ class DoubleList:
             f.write('rankdir=LR;\n')        
             temp = self.head
             count = 0
-            while temp.next is not self.head:
+            while temp.next is not None:
                 f.write('node{} [label=\"{},{}\"];\n'.format(count,temp.x,temp.y))
                 count+=1    
                 f.write('node{} -> node{};\n'.format(count-1,count))
