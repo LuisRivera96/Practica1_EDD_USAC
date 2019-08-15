@@ -43,13 +43,33 @@ class Stack:
                     print(temp.y)
                 temp = temp.next
 
-prueba = Stack()
-prueba.push(0,0)
-prueba.push(1,1)
-prueba.push(2,2)
-prueba.push(3,3)
-prueba.print()
-prueba.pop()
-prueba.print()
-prueba.pop()
-prueba.print()
+    # GRAPHIZ (Generar Graphiz)
+    def graphiz(self):
+        if self.top is None:
+            print('Stack Empty')
+        else:
+            f = open('Stack.dot','w')
+            f.write('digraph firsGraph{\n')
+            f.write('node [shape=record];\n')
+            f.write('rankdir=LR;\n')
+            f.write('nodo0[label=\"')
+            f.write('|')
+            temp = self.top
+            count = 0
+            while(temp.next is not None):           
+                f.write('<{}> {},{}'.format(count,temp.x,temp.y))
+                count+=1
+                if temp.next.next is not None:
+                    f.write('|')
+
+                temp = temp.next
+               
+            f.write('\"];')
+            f.close()
+            os.system('dot Stack.dot -Tpng -o Stack.png')
+            os.system('Stack.png')
+            #subproces no me corrio en windows Descomentar
+            #subprocess.check_call(['open','LinkedList.png'])    
+
+
+

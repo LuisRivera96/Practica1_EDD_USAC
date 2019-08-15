@@ -42,8 +42,33 @@ class Queue:
                     print('->',end='')
                 temp = temp.next
 
-
-
+    # GRAPHIZ (Generar Graphiz)
+    def graphiz(self):
+        if self.head is None:
+            print('Queue Empty')
+        else:
+            f = open('Queue.dot','w')
+            f.write('digraph firsGraph{\n')
+            f.write('node [shape=record];\n')
+            f.write('rankdir=LR;\n')
+            temp = self.head
+            count = 0
+            while(temp.next is not None):
+                f.write('node{} [label=\"{},{}\"];\n'.format(count,temp.user,temp.points))
+                count+=1
+                f.write('node{} -> node{};\n'.format(count-1,count))
+                #if temp.dato is valor:
+                    #print('Se encontro el elemento ',end='')
+                    #print(temp.dato)
+                
+                temp = temp.next
+            f.write('node{} [label=\"{},{}\"];\n'.format(count,temp.user,temp.points))    
+            f.write('}')
+            f.close()
+            os.system('dot Queue.dot -Tpng -o Queue.png')
+            os.system('Queue.png')
+            #subproces no me corrio en windows Descomentar
+            #subprocess.check_call(['open','Queue.png'])
 
 
 
