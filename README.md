@@ -14,3 +14,7 @@ Incluye:
 -Cola
 -Lista Doblemente Enlazada
 -Lista Circular Doblemente Enlazada
+
+NOTA: 69/100
+
+"El juego de Snake contiene varios errores"
